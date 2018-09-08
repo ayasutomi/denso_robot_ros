@@ -10,6 +10,7 @@ project(simple_trajectory)
 find_package(catkin REQUIRED COMPONENTS
   actionlib
   control_msgs
+  sensor_msgs
   # pr2_controllers_msgs
   roscpp
 )
@@ -106,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   INCLUDE_DIRS include
   # LIBRARIES simple_trajectory
-  CATKIN_DEPENDS actionlib control_msgs roscpp #pr2_controllers_msgs
+  CATKIN_DEPENDS actionlib control_msgs sensor_msgs roscpp #pr2_controllers_msgs
 #  DEPENDS system_lib
 )
 

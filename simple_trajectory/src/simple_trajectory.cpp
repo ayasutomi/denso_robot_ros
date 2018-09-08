@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <control_msgs/FollowJointTrajectoryAction.h>
 #include <actionlib/client/simple_action_client.h>
+#include <sensor_msgs/JointState.h>
 
 typedef actionlib::SimpleActionClient< control_msgs::FollowJointTrajectoryAction > TrajClient;
 
@@ -60,20 +61,27 @@ public:
     // We will have two waypoints in this goal trajectory
     goal.trajectory.points.resize(2);
 
+    double current_angles[6];
+    get_current_joint_angles(current_angles);
+    // ROS_INFO("current angles: %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f",current_angles[0],current_angles[1],current_angles[2],current_angles[3],current_angles[4],current_angles[5]) ;
+
     // First trajectory point
     // Positions
     int ind = 0;
     goal.trajectory.points[ind].positions.resize(6);
-    goal.trajectory.points[ind].positions[0] = 0.0;
-    goal.trajectory.points[ind].positions[1] = 0.0;
-    goal.trajectory.points[ind].positions[2] = 0.0;
-    goal.trajectory.points[ind].positions[3] = 0.0;
-    goal.trajectory.points[ind].positions[4] = 0.0;
-    goal.trajectory.points[ind].positions[5] = 0.0;
-    // Velocities
+    goal.trajectory.points[ind].positions[0] = current_angles[0];
+    goal.trajectory.points[ind].positions[1] = current_angles[1];
+    goal.trajectory.points[ind].positions[2] = current_angles[2];
+    goal.trajectory.points[ind].positions[3] = current_angles[3]; 
+    goal.trajectory.points[ind].positions[4] = current_angles[4];
+    goal.trajectory.points[ind].positions[5] = current_angles[5];
+
+    //Velocities
     goal.trajectory.points[ind].velocities.resize(6);
+
     for (size_t j = 0; j < 6; ++j)
     {
+
       goal.trajectory.points[ind].velocities[j] = 0.0;
     }
     // To be reached 1 second after starting along the trajectory
@@ -83,12 +91,12 @@ public:
     // Positions
     ind += 1;
     goal.trajectory.points[ind].positions.resize(6);
-    goal.trajectory.points[ind].positions[0] = -0.5235;//-30deg //-0.3;
-    goal.trajectory.points[ind].positions[1] = 0.5235;//+30deg //0.2;
-    goal.trajectory.points[ind].positions[2] = -0.5235;//-30deg //-0.1;
-    goal.trajectory.points[ind].positions[3] = -1.57075;//-90deg //-1.2;
-    goal.trajectory.points[ind].positions[4] = 1.57075;//+90deg //1.5;
-    goal.trajectory.points[ind].positions[5] = -1.57075;//-90deg //-0.3;
+    goal.trajectory.points[ind].positions[0] = current_angles[0]-0.5235;
+    goal.trajectory.points[ind].positions[1] = current_angles[1];
+    goal.trajectory.points[ind].positions[2] = current_angles[2];
+    goal.trajectory.points[ind].positions[3] = current_angles[3]; 
+    goal.trajectory.points[ind].positions[4] = current_angles[4];
+    goal.trajectory.points[ind].positions[5] = current_angles[5];
     // Velocities
     goal.trajectory.points[ind].velocities.resize(6);
     for (size_t j = 0; j < 6; ++j)
@@ -107,7 +115,22 @@ public:
   {
     return traj_client_->getState();
   }
- 
+
+  //figure out where the arm is now
+  void get_current_joint_angles(double current_angles[6])
+  {
+    int i;
+
+    //get a single message from the topic 'arm_controller/state'
+    sensor_msgs::JointState::ConstPtr joint_states =
+        ros::topic::waitForMessage<sensor_msgs::JointState>("vs060/joint_states");
+
+    //extract the joint angles from it
+    for (i = 0; i < joint_states->position.size(); i++)
+    {
+      current_angles[i] = joint_states->position[i];//    actual.positions[i];
+    }
+  }
 };
 
 int main(int argc, char** argv)
