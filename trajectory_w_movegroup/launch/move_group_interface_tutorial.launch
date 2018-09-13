@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="trajectory_w_movegroup" pkg="trajectory_w_movegroup" type="trajectory_w_movegroup" respawn="false" output="screen">
+  </node>
+
+</launch>

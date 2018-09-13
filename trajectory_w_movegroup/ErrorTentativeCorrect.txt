@@ -1,0 +1,3 @@
+added roscpp
+added moveit_ros_planning
+added add_compile_options(-std=c++11) passed!!

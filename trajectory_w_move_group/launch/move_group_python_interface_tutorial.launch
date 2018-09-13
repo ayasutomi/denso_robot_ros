@@ -1,0 +1,6 @@
+<launch>
+
+  <node name="trajectory_w_move_group" pkg="trajectory_w_move_group" type="trajectory_w_move_group.py" respawn="false" output="screen">
+  </node>
+
+</launch>

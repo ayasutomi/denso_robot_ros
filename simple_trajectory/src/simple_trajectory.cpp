@@ -126,7 +126,7 @@ public:
         ros::topic::waitForMessage<sensor_msgs::JointState>("vs060/joint_states");
 
     //extract the joint angles from it
-    for (i = 0; i < joint_states->position.size(); i++)
+    for (i = 0; i <  6 ; i++)
     {
       current_angles[i] = joint_states->position[i];//    actual.positions[i];
     }
