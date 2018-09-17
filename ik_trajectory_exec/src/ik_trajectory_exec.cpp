@@ -62,12 +62,14 @@ bool IKTrajectoryExecutor::run_ik(geometry_msgs::PoseStamped pose, double start_
 
     ik_request.ik_request.ik_link_name = link_name;
 
+
     ik_request.ik_request.pose_stamped = pose;
     ik_request.ik_request.robot_state.joint_state.position.resize(6);
 
     for (int i = 0; i < 6; i++)
         ik_request.ik_request.robot_state.joint_state.position[i] = start_angles[i];
 
+    ROS_INFO("start_angles: %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f", start_angles[0], start_angles[1], start_angles[2], start_angles[3], start_angles[4], start_angles[5]);
     ROS_INFO("request pose: %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f", pose.pose.position.x, pose.pose.position.y, pose.pose.position.z, pose.pose.orientation.x, pose.pose.orientation.y, pose.pose.orientation.z, pose.pose.orientation.w);
 
     bool ik_service_call = ik_client.call(ik_request, ik_response);
@@ -102,7 +104,7 @@ void IKTrajectoryExecutor::get_current_joint_angles(double current_angles[6])
         ros::topic::waitForMessage<sensor_msgs::JointState>("vs060/joint_states");
 
     //extract the joint angles from it
-    for (i = 0; i < state_msg->position.size(); i++)
+    for (i = 0; i < 6; i++)
     {
         current_angles[i] = state_msg->position[i];
     }
@@ -210,7 +212,7 @@ bool IKTrajectoryExecutor::execute_cartesian_ik_trajectory(geometry_msgs::PoseSt
 
     stamped_pose.pose = newposeStamped.pose;
     double *trajectory_point = new double[6];
-    success = run_ik(stamped_pose, last_angles, trajectory_point, "joint_5");
+    success = run_ik(stamped_pose, last_angles, trajectory_point, "J6");
     joint_trajectory.push_back(trajectory_point);
 
     if (!success)

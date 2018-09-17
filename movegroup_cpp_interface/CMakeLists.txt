@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(trajectory_w_movegroup)
+project(movegroup_cpp_interface)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -138,8 +138,8 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/trajectory_w_movegroup_node.cpp)
 
-add_executable(trajectory_w_movegroup src/trajectory_w_movegroup.cpp)
-target_link_libraries(trajectory_w_movegroup ${catkin_LIBRARIES} ${Boost_LIBRARIES})
+add_executable(movegroup_cpp_interface src/movegroup_cpp_interface.cpp)
+target_link_libraries(movegroup_cpp_interface ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 # install(TARGETS trajectory_w_movegroup DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
 ## Rename C++ executable without prefix

@@ -8,7 +8,7 @@
 int main(int argc, char **argv)
 {
     //init the ROS node                                                                                      
-    ros::init(argc, argv, "reach_object");
+    ros::init(argc, argv, "ik_trajectory_exec");
     ros::NodeHandle nh;
 
     // //Initialize joint angle goals to move arms to initial position                                          
@@ -32,9 +32,9 @@ int main(int argc, char **argv)
     IKTrajectoryExecutor ik_traj_exec = IKTrajectoryExecutor();
     geometry_msgs::PoseStamped newposeStamped;
     newposeStamped.header.frame_id = "/base_link";
-    newposeStamped.pose.position.x = 0.45;
+    newposeStamped.pose.position.x = 0.5;
     newposeStamped.pose.position.y = 0.0;
-    newposeStamped.pose.position.z = 0.9;
+    newposeStamped.pose.position.z = 0.5;
     newposeStamped.pose.orientation.x = 0.0;
     newposeStamped.pose.orientation.y = 0.0;
     newposeStamped.pose.orientation.z = 0.0;

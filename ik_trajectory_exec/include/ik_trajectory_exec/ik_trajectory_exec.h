@@ -14,7 +14,6 @@
 typedef actionlib::SimpleActionClient<control_msgs::FollowJointTrajectoryAction> TrajClient;
 static const std::string ARM_IK_NAME = "/compute_ik";
 
-
 class IKTrajectoryExecutor
 {
 
@@ -32,11 +31,11 @@ class IKTrajectoryExecutor
 
     ~IKTrajectoryExecutor();
 
-    //run inverse kinematics on a PoseStamped (7-dof pose
+    //run inverse kinematics on a PoseStamped (6-dof pose
     //(position + quaternion orientation) + header specifying the
     //frame of the pose)
-    //tries to stay close to double start_angles[7]
-    //returns the solution angles in double solution[7]
+    //tries to stay close to double start_angles[6]
+    //returns the solution angles in double solution[6]
     bool run_ik(geometry_msgs::PoseStamped pose, double start_angles[6],
                 double solution[6], std::string link_name);
 

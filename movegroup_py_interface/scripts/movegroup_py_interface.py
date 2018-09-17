@@ -76,16 +76,16 @@ def all_close(goal, actual, tolerance):
 
   return True
 
-class MoveGroupPythonIntefaceTutorial(object):
-  """MoveGroupPythonIntefaceTutorial"""
+class MoveGroupPyInterface(object):
+  """MoveGroupPyInterface"""
   def __init__(self):
-    super(MoveGroupPythonIntefaceTutorial, self).__init__()
+    super(MoveGroupPyInterface, self).__init__()
 
     ## BEGIN_SUB_TUTORIAL setup
     ##
     ## First initialize `moveit_commander`_ and a `rospy`_ node:
     moveit_commander.roscpp_initialize(sys.argv)
-    rospy.init_node('move_group_python_interface_tutorial',
+    rospy.init_node('trajectory_w_move_group',
                     anonymous=True)
 
     ## Instantiate a `RobotCommander`_ object. This object is the outer-level interface to
@@ -160,9 +160,9 @@ class MoveGroupPythonIntefaceTutorial(object):
     # We can get the joint values from the group and adjust some of the values:
     joint_goal = group.get_current_joint_values()
     joint_goal[0] = 0
-    joint_goal[1] = -pi/4
-    joint_goal[2] = 0
-    joint_goal[3] = -pi/2
+    joint_goal[1] = pi/4
+    joint_goal[2] = pi/4
+    joint_goal[3] = pi/2
     joint_goal[4] = 0
     joint_goal[5] = pi/3
 
@@ -193,11 +193,20 @@ class MoveGroupPythonIntefaceTutorial(object):
     ## ^^^^^^^^^^^^^^^^^^^^^^^
     ## We can plan a motion for this group to a desired pose for the
     ## end-effector:
+
+    print group.get_current_pose()
+
     pose_goal = geometry_msgs.msg.Pose()
-    pose_goal.orientation.w = 1.0
-    pose_goal.position.x = 0.4
-    pose_goal.position.y = 0.1
-    pose_goal.position.z = 0.4
+    # pose_goal.orientation.w = 1.0
+    # pose_goal.orientation.x = 0.0
+    # pose_goal.orientation.y = 0.0
+    # pose_goal.orientation.z = 0.0
+    # pose_goal.position.x = 0.5 ##0.4
+    # pose_goal.position.y = 0.5 #0.1
+    # pose_goal.position.z = 0.5 #0.4
+    pose_goal.position.x = 0.5 ##0.4
+    pose_goal.position.y = 0.0 #0.1
+    pose_goal.position.z = 0.5 #0.4
     group.set_pose_target(pose_goal)
 
     ## Now, we call the planner to compute the plan and execute it.
@@ -278,7 +287,7 @@ class MoveGroupPythonIntefaceTutorial(object):
     display_trajectory.trajectory_start = robot.get_current_state()
     display_trajectory.trajectory.append(plan)
     # Publish
-    display_trajectory_publisher.publish(display_trajectory);
+    display_trajectory_publisher.publish(display_trajectory)
 
     ## END_SUB_TUTORIAL
 
@@ -354,7 +363,7 @@ class MoveGroupPythonIntefaceTutorial(object):
     ## ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     ## First, we will create a box in the planning scene at the location of the left finger:
     box_pose = geometry_msgs.msg.PoseStamped()
-    box_pose.header.frame_id = "panda_leftfinger"
+    box_pose.header.frame_id = "J6"
     box_pose.pose.orientation.w = 1.0
     box_name = "box"
     scene.add_box(box_name, box_pose, size=(0.1, 0.1, 0.1))
@@ -386,7 +395,7 @@ class MoveGroupPythonIntefaceTutorial(object):
     ## planning scene to ignore collisions between those links and the box. For the Panda
     ## robot, we set ``grasping_group = 'hand'``. If you are using a different robot,
     ## you should change this value to the name of your end effector group name.
-    grasping_group = 'hand'
+    grasping_group = 'arm'
     touch_links = robot.get_link_names(group=grasping_group)
     scene.attach_box(eef_link, box_name, touch_links=touch_links)
     ## END_SUB_TUTORIAL
@@ -438,7 +447,7 @@ def main():
   try:
     print "============ Press `Enter` to begin the tutorial by setting up the moveit_commander (press ctrl-d to exit) ..."
     raw_input()
-    tutorial = MoveGroupPythonIntefaceTutorial()
+    tutorial = MoveGroupPyInterface()
 
     print "============ Press `Enter` to execute a movement using a joint state goal ..."
     raw_input()
@@ -460,26 +469,26 @@ def main():
     raw_input()
     tutorial.execute_plan(cartesian_plan)
 
-    # print "============ Press `Enter` to add a box to the planning scene ..."
-    # raw_input()
-    # tutorial.add_box()
+    print "============ Press `Enter` to add a box to the planning scene ..."
+    raw_input()
+    tutorial.add_box()
 
-    # print "============ Press `Enter` to attach a Box to the Panda robot ..."
-    # raw_input()
-    # tutorial.attach_box()
+    print "============ Press `Enter` to attach a Box to the Panda robot ..."
+    raw_input()
+    tutorial.attach_box()
 
-    # print "============ Press `Enter` to plan and execute a path with an attached collision object ..."
-    # raw_input()
-    # cartesian_plan, fraction = tutorial.plan_cartesian_path(scale=-1)
-    # tutorial.execute_plan(cartesian_plan)
+    print "============ Press `Enter` to plan and execute a path with an attached collision object ..."
+    raw_input()
+    cartesian_plan, fraction = tutorial.plan_cartesian_path(scale=-1)
+    tutorial.execute_plan(cartesian_plan)
 
-    # print "============ Press `Enter` to detach the box from the Panda robot ..."
-    # raw_input()
-    # tutorial.detach_box()
+    print "============ Press `Enter` to detach the box from the Panda robot ..."
+    raw_input()
+    tutorial.detach_box()
 
-    # print "============ Press `Enter` to remove the box from the planning scene ..."
-    # raw_input()
-    # tutorial.remove_box()
+    print "============ Press `Enter` to remove the box from the planning scene ..."
+    raw_input()
+    tutorial.remove_box()
 
     print "============ Python tutorial demo complete!"
   except rospy.ROSInterruptException:

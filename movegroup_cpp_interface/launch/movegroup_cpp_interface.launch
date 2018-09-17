@@ -1,0 +1,7 @@
+<launch>
+
+  <node name="movegroup_cpp_interface" pkg="movegroup_cpp_interface" type="movegroup_cpp_interface" respawn="false" output="screen">
+  <remap from="/joint_states" to="/vs060/joint_states" />
+  </node>
+
+</launch>

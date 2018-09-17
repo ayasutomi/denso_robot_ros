@@ -1,0 +1,7 @@
+<launch>
+
+  <node name="movegroup_py_interface" pkg="movegroup_py_interface" type="movegroup_py_interface.py" respawn="false" output="screen" >
+  <remap from="/joint_states" to="/vs060/joint_states" />
+  </node>
+
+</launch>
