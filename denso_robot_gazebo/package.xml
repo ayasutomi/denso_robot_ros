@@ -13,5 +13,12 @@
   <run_depend>gazebo_ros_pkgs</run_depend>
   <run_depend>joint_state_controller</run_depend>
   <run_depend>joint_trajectory_controller</run_depend>
+
+  <!-- Added so gazebo look for model inside the models folder -->
+  <run_depend>gazebo_ros_control</run_depend>
+  <export>
+    <!-- <gazebo_ros gazebo_media_path="${prefix}/worlds" /> -->
+    <gazebo_ros gazebo_model_path="${prefix}/models" /> 
+  </export>
   
 </package>

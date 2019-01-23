@@ -25,6 +25,9 @@
     <include file="$(find denso_robot_gazebo)/launch/denso_robot_gazebo.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
     </include>
+    <!-- Spawning objects with python script -->
+    <!-- <env name="GAZEBO_MODEL_PATH" value="$(find denso_robot_gazebo)/models"/>
+    <node pkg="denso_robot_gazebo" name="spawn_objects" type="spawn_objects" /> -->
   </group>  
 
   <group unless="$(arg sim)">

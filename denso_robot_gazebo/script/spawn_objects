@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import random
+import rospy
+import rospkg
+from gazebo_msgs.srv import SpawnModel
+from geometry_msgs.msg import Pose
+
+def main():
+    ''' main function
+    '''
+    rospy.init_node('object_ramdon_spawner', anonymous=True)
+
+    # wait ros service
+    rospy.wait_for_service('/gazebo/spawn_sdf_model')
+
+    try:
+        spawn_sdf_model = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
+
+        # get package path
+        pkg_path = rospkg.RosPack().get_path('denso_robot_gazebo')
+
+        # load model
+        # model_name_list = ['beer', 'coke_can', 'wood_cube_10cm']
+        model_name_list = ['cafe_table', 'beer', 'coke_can']
+        for model_name in model_name_list:
+
+            # laod xml data
+            model_path = os.path.join(pkg_path, 'models', model_name, 'model.sdf')
+            with open(model_path) as f:
+                model_txt = f.read()
+
+            # set random pose
+            table_region = (1.0 - 0.2) / 2.0
+            table_x = 1.0
+            table_y = 0.0
+            table_z = 0.01
+
+            pose = Pose()
+            if model_name == 'cafe_table':
+                pose.position.x = table_x
+                pose.position.y = table_y
+                pose.position.y = table_z
+            else:
+                pose.position.x = table_x + random.uniform(-table_region, table_region)
+                pose.position.y = table_y + random.uniform(-table_region, table_region)
+                pose.position.z = table_z + 0.8
+            
+            spawn_sdf_model(model_name, model_txt, model_name, pose, 'world')
+
+    except rospy.ServiceException, err:
+        print err
+
+    except Exception as err:
+        print err
+
+    return 0
+
+if __name__ == '__main__':
+    sys.exit(main())

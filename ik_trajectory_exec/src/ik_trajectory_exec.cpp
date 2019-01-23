@@ -84,7 +84,7 @@ bool IKTrajectoryExecutor::run_ik(geometry_msgs::PoseStamped pose, double start_
         {
             solution[i] = ik_response.solution.joint_state.position[i];
         }
-        ROS_INFO("solution angles: %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f",
+        ROS_INFO("solution angles: %0.3f %0.3f %0.3f %0.3f %0.3f %0.3f",
                  solution[0], solution[1], solution[2], solution[3],
                  solution[4], solution[5]);
         ROS_INFO("IK service call succeeded");
