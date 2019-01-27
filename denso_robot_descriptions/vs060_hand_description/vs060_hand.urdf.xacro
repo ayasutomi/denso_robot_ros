@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="vs060">
+  <xacro:include filename="$(find denso_robot_descriptions)/vs060_description/vs060.urdf"/>
+  <xacro:include filename="$(find denso_robot_descriptions)/vs060_hand_description/hand.xacro"/>
+  <!-- <xacro:panda_arm /> -->
+  <xacro:hand ns="panda" rpy="0 0 ${-pi/4}" connected_to="J6"/>
+</robot>
