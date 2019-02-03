@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: denso_robot_descriptions
+    relative_path: vs060_hand_description/vs060_hand.urdf
+    xacro_args: "--inorder "
+  SRDF:
+    relative_path: config/vs060_hand.srdf
+  CONFIG:
+    author_name: ayasutomi
+    author_email: a@gmail.com
+    generated_timestamp: 1548859205

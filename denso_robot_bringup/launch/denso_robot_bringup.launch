@@ -47,6 +47,7 @@
 
   <include file="$(find denso_robot_moveit_config)/launch/moveit_rviz.launch">
     <arg name="config" value="true"/>
+    <arg name="robot_name" value="$(arg robot_name)" />
   </include>
   
   <!-- <include file="$(find denso_robot_moveit_config)/launch/default_warehouse_db.launch" /> -->
