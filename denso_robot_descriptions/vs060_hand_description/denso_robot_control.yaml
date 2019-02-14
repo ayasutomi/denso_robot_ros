@@ -12,3 +12,9 @@ vs060_hand:
       - joint_4
       - joint_5
       - joint_6
+
+  hand_controller:
+    type: "position_controllers/JointTrajectoryController"
+    joints:
+      - panda_finger_joint1
+      - panda_finger_joint2
