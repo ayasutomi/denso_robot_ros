@@ -4,12 +4,11 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /MotionPlanning1
         - /PointCloud21
-        - /TF1
-        - /TF1/Frames1
         - /TF1/Tree1
       Splitter Ratio: 0.742560029
-    Tree Height: 346
+    Tree Height: 332
   - Class: rviz/Help
     Name: Help
   - Class: rviz/Views
@@ -108,6 +107,21 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          panda_hand:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_leftfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_rightfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           world:
             Alpha: 1
             Show Axes: false
@@ -192,6 +206,21 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
+          panda_hand:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_leftfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
+          panda_rightfinger:
+            Alpha: 1
+            Show Axes: false
+            Show Trail: false
+            Value: true
           world:
             Alpha: 1
             Show Axes: false
@@ -250,6 +279,14 @@ Visualization Manager:
           Value: false
         base_link:
           Value: false
+        color:
+          Value: true
+        panda_hand:
+          Value: false
+        panda_leftfinger:
+          Value: false
+        panda_rightfinger:
+          Value: false
         world:
           Value: false
       Marker Scale: 1
@@ -266,7 +303,13 @@ Visualization Manager:
                   J4:
                     J5:
                       J6:
-                        {}
+                        panda_hand:
+                          panda_leftfinger:
+                            {}
+                          panda_rightfinger:
+                            {}
+            color:
+              {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -285,15 +328,15 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/XYOrbit
-      Distance: 4.74954748
+      Distance: 3.83123755
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.20304811
-        Y: 0.161349297
+        X: 0.790969372
+        Y: -0.609207511
         Z: 4.02331921e-07
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.0500000007
@@ -307,21 +350,21 @@ Visualization Manager:
     Saved: ~
 Window Geometry:
   Displays:
-    collapsed: false
-  Height: 1056
+    collapsed: true
+  Height: 1028
   Help:
     collapsed: false
-  Hide Left Dock: false
+  Hide Left Dock: true
   Hide Right Dock: false
   MotionPlanning:
-    collapsed: false
+    collapsed: true
   MotionPlanning - Trajectory Slider:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000100000000000002ad000003dafc0200000008fb000000100044006900730070006c0061007900730100000028000001ef000000d700fffffffb0000000800480065006c00700000000342000000bb0000007300fffffffb0000000a0056006900650077007300000003b0000000b0000000ad00fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004a00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000021d0000019a0000018300fffffffb00000024005200760069007a00560069007300750061006c0054006f006f006c007300470075006901000003bd000000450000004300ffffff00000496000003da00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000100000000000002ad000003befc0200000008fb000000100044006900730070006c0061007900730000000028000001e1000000d700fffffffb0000000800480065006c00700000000342000000bb0000007300fffffffb0000000a0056006900650077007300000003b0000000b0000000ad00fffffffb0000000c00430061006d00650072006100000002ff000001610000000000000000fb0000001e004d006f00740069006f006e00200050006c0061006e006e0069006e00670100000374000001890000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004a00fffffffb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067000000020f0000018e0000018300fffffffb00000024005200760069007a00560069007300750061006c0054006f006f006c007300470075006900000003a3000000430000004300ffffff000003a5000003be00000001000000020000000100000002fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RvizVisualToolsGui:
-    collapsed: false
+    collapsed: true
   Views:
     collapsed: false
-  Width: 1865
-  X: 55
+  Width: 933
+  X: 987
   Y: 24

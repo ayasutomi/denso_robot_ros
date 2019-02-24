@@ -34,7 +34,7 @@
     </group_state>
     <group_state name="Open" group="hand">
         <joint name="panda_finger_joint1" value="0.04" />
-        <joint name="panda_finger_joint2" value="0" />
+        <joint name="panda_finger_joint2" value="0.04" />
     </group_state>
     <group_state name="Close" group="hand">
         <joint name="panda_finger_joint1" value="0" />

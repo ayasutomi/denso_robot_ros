@@ -23,15 +23,16 @@ def main():
         # get package path
         pkg_path = rospkg.RosPack().get_path('denso_robot_gazebo')
 
-        table_region = (1.0 - 0.2) / 2.0
-        table_x = 0.7
-        table_y = -0.5
+        table_len = 0.8
+        table_x = 0.6
+        table_y = -0.45
         table_z = 0.01
+        table_region = (table_len - 0.1) / 2.0
         table_n = 0
 
         # load model
         # model_name_list = ['beer', 'coke_can', 'wood_cube_10cm']
-        model_name_list = ['cafe_table','cafe_table', 'beer', 'coke_can']
+        model_name_list = ['table','table', 'beer', 'coke_can']
         for model_name in model_name_list:
 
             # laod xml data
@@ -40,10 +41,8 @@ def main():
                 model_txt = f.read()
 
             # set random pose
-
-
             pose = Pose()
-            if model_name == 'cafe_table':
+            if model_name == 'table':
                 pose.position.x = table_x
                 pose.position.y = table_y
                 pose.position.z = table_z

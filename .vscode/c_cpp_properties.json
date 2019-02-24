@@ -14,7 +14,8 @@
                 "/home/yuji/denso/catkin_ws/src/denso_robot_ros/denso_robot_core/include",
                 "/home/yuji/denso/catkin_ws/src/denso_robot_ros/ik_trajectory_exec/include",
                 "/home/yuji/denso/catkin_ws/src/denso_robot_ros/simple_trajectory/include",
-                "/usr/include"
+                "/usr/include",
+                "/usr/include/eigen3"
             ],
             "name": "Linux",
             "intelliSenseMode": "gcc-x64"

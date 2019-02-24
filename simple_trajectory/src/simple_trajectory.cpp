@@ -270,32 +270,32 @@ int main(int argc, char** argv)
   // Init the ROS node
   ros::init(argc, argv, "simple_trajectory");
 
-  // RobotArm arm;
+  RobotArm arm;
+  // Start the trajectory
+  arm.startTrajectory(arm.armExtensionTrajectory());
+  // Wait for trajectory completion
+  while(!arm.getState().isDone() && ros::ok())
+  {
+    usleep(50000);
+  }
+
+  // RobotHand hand;
   // // Start the trajectory
-  // arm.startTrajectory(arm.armExtensionTrajectory());
+  // hand.startTrajectory(hand.openHand());
   // // Wait for trajectory completion
-  // while(!arm.getState().isDone() && ros::ok())
+  // while(!hand.getState().isDone() && ros::ok())
   // {
   //   usleep(50000);
   // }
 
-  RobotHand hand;
-  // Start the trajectory
-  hand.startTrajectory(hand.openHand());
-  // Wait for trajectory completion
-  while(!hand.getState().isDone() && ros::ok())
-  {
-    usleep(50000);
-  }
+  // sleep(1);
 
-  sleep(1);
-
-  hand.startTrajectory(hand.closeHand());
-  // Wait for trajectory completion
-  while(!hand.getState().isDone() && ros::ok())
-  {
-    usleep(50000);
-  }
+  // hand.startTrajectory(hand.closeHand());
+  // // Wait for trajectory completion
+  // while(!hand.getState().isDone() && ros::ok())
+  // {
+  //   usleep(50000);
+  // }
 
   return 0;
 }

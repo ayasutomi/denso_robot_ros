@@ -19,11 +19,11 @@
 
   <group if="$(arg sim)">
     <!-- Spawning objects with python script -->
-    <env name="GAZEBO_MODEL_PATH" value="$(find denso_robot_gazebo)/models"/>
-    <node pkg="denso_robot_gazebo" name="spawn_objects" type="spawn_objects" />
-    <!-- Launching franka gripper action server -->
-    <!-- <include file="$(find franka_gripper)/launch/franka_gripper.launch">
-      <arg name="robot_ip" value="192.168.11.10" />
-    </include> -->
+    <!-- <env name="GAZEBO_MODEL_PATH" value="$(find denso_robot_gazebo)/models"/>
+    <node pkg="denso_robot_gazebo" name="spawn_objects" type="spawn_objects" /> -->
+    <!-- Launching realsense_plugin -->
+    <param name="camera_description" command="$(find xacro)/xacro '$(find realsense_gazebo_plugin)/urdf/rs200_simulation.xacro'"/>
+    <node name="spawn_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param camera_description -model rs200"/>
+    <include file="$(find realsense_gazebo_plugin)/launch/depth_proc.launch"/>
   </group>  
 </launch>
