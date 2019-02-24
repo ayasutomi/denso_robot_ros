@@ -1,0 +1,7 @@
+<launch>
+
+  <node name="pick_place_gazebo" pkg="pick_place_gazebo" type="pick_place_gazebo.py" respawn="false" output="screen" >
+  <remap from="/joint_states" to="/vs060_hand/joint_states" />
+  </node>
+
+</launch>

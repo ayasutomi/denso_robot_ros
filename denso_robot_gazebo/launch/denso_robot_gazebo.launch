@@ -1,6 +1,7 @@
 <launch>
   <!-- Override robot_name argument -->
   <arg name="robot_name" default="vs060" />
+  <arg name="hand" default="false" />
 
   <!-- Robot description argument -->
   <arg name="robot_description" value="$(arg robot_name)_description" />
@@ -18,8 +19,16 @@
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg robot_name)" />
 
   <rosparam file="$(find denso_robot_descriptions)/$(arg robot_description)/denso_robot_control.yaml" command="load" />
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
-   ns="/$(arg robot_name)" args="joint_state_controller arm_controller hand_controller" />
+
+  <group if="$(arg hand)">
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+      ns="/$(arg robot_name)" args="joint_state_controller arm_controller hand_controller" />
+  </group>  
+
+  <group unless="$(arg hand)">
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+      ns="/$(arg robot_name)" args="joint_state_controller arm_controller" />
+  </group>  
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" 
         type="robot_state_publisher" respawn="false" output="screen">

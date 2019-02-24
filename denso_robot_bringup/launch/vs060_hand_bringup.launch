@@ -15,6 +15,7 @@
     <arg name="ip_address" value="$(arg ip_address)"/>
     <arg name="send_format" value="$(arg send_format)" />
     <arg name="recv_format" value="$(arg recv_format)" />
+    <arg name="hand" value="true" />
   </include>
 
   <group if="$(arg sim)">

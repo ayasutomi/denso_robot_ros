@@ -29,13 +29,3 @@ joint_limits:
     max_velocity:6.28318530717959
     has_acceleration_limits:true
     max_acceleration:33.5103216382911
-  panda_finger_joint1:
-    has_velocity_limits:true
-    max_velocity:0.2
-    has_acceleration_limits:false
-    max_acceleration:0
-  panda_finger_joint2:
-    has_velocity_limits:true
-    max_velocity:0.2
-    has_acceleration_limits:false
-    max_acceleration:0

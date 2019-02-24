@@ -1,6 +1,9 @@
 <launch>
   <!-- Override robot_name argument -->
   <arg name="robot_name" default="vs060" />
+
+  <!-- Override hand argument -->
+  <arg name="hand" default="false" />
  
   <!-- the "sim" argument controls whether we connect to a Simulated or Real robot -->
   <!--  - if sim=false, a ip_address argument is required -->
@@ -24,6 +27,7 @@
   <group if="$(arg sim)">
     <include file="$(find denso_robot_gazebo)/launch/denso_robot_gazebo.launch">
       <arg name="robot_name" value="$(arg robot_name)" />
+      <arg name="hand" value="$(arg hand)" />
     </include>
     <!-- Spawning objects with python script -->
     <!-- <env name="GAZEBO_MODEL_PATH" value="$(find denso_robot_gazebo)/models"/>
