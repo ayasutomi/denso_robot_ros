@@ -166,7 +166,7 @@ include_directories(
 ## in contrast to setup.py, you can choose the destination
 install(DIRECTORY launch DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 install(PROGRAMS
-  scripts/${PROJECT_NAME}.py scripts/move_group_interface.py
+  scripts/${PROJECT_NAME}.py scripts/move_group_interface.py scripts/simple_trajectory_interface.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

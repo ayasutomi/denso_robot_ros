@@ -41,7 +41,6 @@ class MoveGroupPyInterface(object):
     super(MoveGroupPyInterface, self).__init__()
 
     moveit_commander.roscpp_initialize(sys.argv)
-    rospy.init_node('trajectory_w_move_group', anonymous=True)
 
     robot = moveit_commander.RobotCommander()
 
