@@ -20,7 +20,7 @@ def main():
     print ("============ Move group and simple action lib instantiated. Press `Enter` to continue ...")
     raw_input() 
 
-    # movearm.go_to_joint_state()
+    movearm.go_to_joint_state()
     # movearm.go_to_pose_goal()
 
 
@@ -35,11 +35,11 @@ def main():
     # arm_traj.start()
     # arm_traj.wait(15.0)
 
-    hand_traj.openHand()
+    # hand_traj.openHand()
 
-    time.sleep(2)
+    # time.sleep(2)
 
-    hand_traj.closeHand()
+    # hand_traj.closeHand()
 
 
     print ( "============ Program complete!")

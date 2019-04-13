@@ -4,7 +4,7 @@ vs060_hand:
     publish_rate: 125  
 
   arm_controller:
-    type: "position_controllers/JointTrajectoryController"
+    type: "effort_controllers/JointTrajectoryController"
     joints:
       - joint_1
       - joint_2
@@ -12,9 +12,20 @@ vs060_hand:
       - joint_4
       - joint_5
       - joint_6
+    gains:
+      joint_1: {p: 100,  d: 10, i: 10, i_clamp: 1}
+      joint_2: {p: 100,  d: 10, i: 10, i_clamp: 1}
+      joint_3: {p: 100,  d: 1, i: 1, i_clamp: 1}
+      joint_4: {p: 100,  d: 1, i: 1, i_clamp: 1}
+      joint_5: {p: 100,  d: 1, i: 1, i_clamp: 1}
+      joint_6: {p: 100,  d: 1, i: 1, i_clamp: 1}
 
+    
   hand_controller:
-    type: "position_controllers/JointTrajectoryController"
+    type: "effort_controllers/JointTrajectoryController"
     joints:
       - panda_finger_joint1
       - panda_finger_joint2
+    gains:
+      panda_finger_joint1: {p: 100,  d: 1, i: 1, i_clamp: 1}
+      panda_finger_joint2: {p: 100,  d: 1, i: 1, i_clamp: 1}
